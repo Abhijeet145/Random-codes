@@ -1,0 +1,29 @@
+// A C/C++ Program to print all the subsequences of a string
+
+#include<bits/stdc++.h>
+using namespace std;
+
+void subseq(string s,string res)
+{
+    if(s.length()==0)
+    {
+        cout << res <<" ";
+        return;
+    }
+    
+    //excluding in res
+    subseq(s.substr(1),res);
+    // including in res
+    subseq(s.substr(1),res + s[0]);
+}
+
+// Driver Program to test above functions
+int main()
+{
+	string st = "abc";
+	subseq(st,"");
+	
+	return(0);
+}
+
+// At every point we need to take just one decision if we have to include or exclde a character
