@@ -1,0 +1,36 @@
+// A C++ Program to print the string formed by digits of a phone
+
+#include<bits/stdc++.h>
+using namespace std;
+
+void digstring(string s,string res,unordered_map<char,string> &m)
+{
+    if(s.length()==0)
+    {
+        cout << res <<" ";
+        return;
+    }
+    string str = m[s[0]];// get the possible string at current position
+    
+    for(int i=0;i<str.length();i++) // iterate to include each character in the result
+    digstring(s.substr(1),res+str[i],m);
+
+}
+
+// Driver Program to test above functions
+int main()
+{
+	string st;
+	cin >> st;
+	unordered_map<char,string> m ={ {'2',"abc"},
+	                                {'3',"def"},    
+	                                {'4',"ghi"}, 
+	                                {'5',"jkl"}, 
+	                                {'6',"mno"}, 
+	                                {'7',"pqrs"}, 
+	                                {'8',"tuv"}, 
+	                                {'9',"wxyz"}};
+	digstring(st,"",m);
+	                                
+	return(0);
+}
