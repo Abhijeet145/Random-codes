@@ -1,0 +1,32 @@
+  //Program to find length of longest increasing subsequence.
+
+class Solution
+{
+    public:
+    //Function to find length of longest increasing subsequence.
+    int longestSubsequence(int n, int a[])
+    {
+       // your code here
+       if(n==1)
+       return 1;
+       int dp[n]={};
+       dp[0] = 1;
+       int res = 1;
+       for(int i=1;i<n;i++)
+       {
+           int longest = 0;
+           for(int j = i-1;j>=0;j--)
+           {
+               if(a[j]<a[i])
+               longest = max(longest,dp[j]);
+           }
+           dp[i] = longest +1;
+           res = max(res,dp[i]);
+       }
+       return res;
+    }
+};
+
+//to remember
+for every index we need to go back to left and check the maximum of the sequences ending there
+The final answer will be the maximum of subsequences ending at each index
