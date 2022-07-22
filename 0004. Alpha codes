@@ -1,0 +1,40 @@
+/* if 1 ---> A 
+      2 ---> B
+      '
+      '
+      26 ---> Z
+  Then find all the possible numbers that cound me made by the digits code on decoding
+  */
+
+#include<bits/stdc++.h>
+using namespace std;
+
+int alphacode(int *input,int size)
+{
+    if(size==0 || size==1 )
+    return 1;
+    int output[size+1]={};
+    output[0]=1;
+    output[1] = 1;
+    for(int i=2;i<=size;i++)
+    {
+        output[i] = output[i-1];
+        if(input[i-2]*10 + input[i-1]<=26)
+        output[i] += output[i-2];
+    }
+    return output[size];
+    
+}
+int main()
+{
+    int n;
+    cin >> n;
+    int input[n];
+    for(int i=0;i<n;i++)
+    cin >> input[i];
+    
+    int res = alphacode(input,n);
+    cout << res <<endl;
+    
+	return(0);
+}
